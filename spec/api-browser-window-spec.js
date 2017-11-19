@@ -80,9 +80,13 @@ describe('BrowserWindow module', () => {
         backgroundThrottling: false
       }
     })
+    console.log(`BEFORE EACH: Window #${w.id} created.`)
   })
 
   afterEach(() => {
+    const windowIsDestroyed = (w == null) || w.isDestroyed()
+    console.log('AFTER EACH: trying to close window ' +
+        `#${windowIsDestroyed ? 'DESTROYED' : w.id}`)
     return closeWindow(w).then(() => { w = null })
   })
 
